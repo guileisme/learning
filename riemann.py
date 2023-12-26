@@ -21,9 +21,3 @@ for i in x:
 soma = sum(lista_func)
 
 print(soma)
-
-
-
-
-
-
