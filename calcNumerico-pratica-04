@@ -1,0 +1,73 @@
+import numpy as np
+import scipy as sp
+
+def g(v):
+  return v**2
+
+a = 0
+b = 1
+m = 20000
+
+v = np.linspace(a, b, m+1)
+k = g(v)
+
+u = sp.integrate.simpson(k, v)
+print(u)
+
+x = np.array([5,8,13])
+y = np.array([2.5, 6.8, 11.9])
+print(x)
+print(y)
+
+pPadrao = sp.interpolate.interp1d (x, y)
+pQuadratic = sp.interpolate.interp1d (x, y, kind = 'quadratic')
+pLinear = sp.interpolate.interp1d (x, y, kind = 'linear')
+
+print("Interpolação Quadrática: "+ str(pQuadratic(10)))
+print("Interpolação Linear: "+ str(pLinear(10)))
+
+def f(x):
+  return x**2
+
+x = np.linspace(0, 1, 10)
+y = f(x)
+
+print(x)
+print(y)
+
+r = sp.integrate.trapezoid(y,x)
+print(r)
+
+s = sp.integrate.simpson(y, x)
+print(s)
+
+def f(z):
+  return np.exp(z**2)
+
+z = np.linspace(0,2,50000)
+h = f(z)
+
+i = sp.integrate.trapezoid(h, z)
+
+print("Integral de Euler: "+str(i))
+
+def f(x,y):
+  return x-2*y
+
+x0 = 0
+y0 = 1
+h = 0.1
+
+x= np.arange(x0, 0.6, h)
+y = np.zeros(6)
+y[0] = y0
+
+for i in range (1,6):
+  y[i] = y[i-1]+h*f(x[i-1],y[i-1])
+
+print(y)
+
+for i in range(1,6):
+  y[i] = y[i-1] + (h/2)*(f(x[i-1], y[i-1]) + f(x[i-1] + h, y[i-1] + h*f(x[i-1], y[i-1])))
+
+print(y[5])
