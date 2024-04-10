@@ -3,23 +3,14 @@
 
 matriz1 = ([[1, 2, 3, 400, 5],
             [6, 7, 8, 9, 10],
-            [11, 12, 13, 14, 15]
+            [11, 12, 13, 1400, 15]
             ])
 
 numerosMaximos = []
 for i in range(len(matriz1)):
         numerosMaximos.append(max(matriz1[i]))
     
-print(max(numerosMaximos))
+print("O maior número dentro da matriz é {}".format(max(numerosMaximos)))
 
 # resultado
-# 0: 10
-# 1: 20
-# 2: 30
-# 3: 40
-# 4: 50
-# 5: 60
-# 6: 70
-# 7: 80
-# 8: 90
-# 9: 100
+# O maior númeor dentro da matriz é 1400
