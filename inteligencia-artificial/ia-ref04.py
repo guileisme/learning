@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-# Definindo os valores dos nós no mapa
+# definindo os valores dos nós no mapa
 FREE = 0
 OBSTACLE = 1
 START = 2
@@ -10,7 +10,7 @@ FRONTIER = 4
 VISITED = 5
 PATH = 6
 
-# Definindo as cores para visualização
+
 colors = {
     FREE: (255, 255, 255),     # Branco
     OBSTACLE: (0, 0, 0),        # Preto
@@ -20,7 +20,7 @@ colors = {
     VISITED: (128, 128, 128),   # Cinza
     PATH: (255, 0, 0)           # Vermelho
 }
-# Função para visualizar o mapa
+# função para mostrar o mapa criado
 def visualize_map(map):
     map_rgb = np.zeros((map.shape[0], map.shape[1], 3), dtype=np.uint8)
     for i in range(map.shape[0]):
@@ -32,7 +32,7 @@ def visualize_map(map):
     cv2.imshow('Map', resolucao)
     cv2.waitKey(0)
 
-# Função para encontrar vizinhos válidos de um nó
+# função para encontrar vizinhos válidos de um nó
 def find_neighbors(map, node):
     neighbors = []
     rows, cols = map.shape
@@ -45,7 +45,7 @@ def find_neighbors(map, node):
             neighbors.append((r, c))
     return neighbors
 
-# Implementação do algoritmo de busca de custo uniforme
+# algoritmo de busca de custo uniforme
 def uniform_cost_search(map, start, goal):
     rows, cols = map.shape
     visited = np.zeros((rows, cols), dtype=bool)
@@ -66,7 +66,7 @@ def uniform_cost_search(map, start, goal):
     path = trace_path(map, start, goal)
     visualize_path(map, path)
 
-# Implementação do algoritmo de busca melhor primeiro
+# algoritmo de busca melhor primeiro
 def best_first_search(map, start, goal):
     rows, cols = map.shape
     visited = np.zeros((rows, cols), dtype=bool)
@@ -87,7 +87,7 @@ def best_first_search(map, start, goal):
     path = trace_path(map, start, goal)
     visualize_path(map, path)
 
-# Implementação do algoritmo A*
+# algoritmo a*
 def A_star_search(map, start, goal):
     rows, cols = map.shape
     visited = np.zeros((rows, cols), dtype=bool)
@@ -110,7 +110,7 @@ def A_star_search(map, start, goal):
     path = trace_path(map, start, goal)
     visualize_path(map, path)
 
-# Função para traçar o caminho percorrido
+# função para traçar o caminho percorrido
 def trace_path(map, start, goal):
     path = [goal]
     while path[-1] != start:
@@ -126,17 +126,17 @@ def trace_path(map, start, goal):
         path.append(next_node)
     return path[::-1]
 
-# Função para visualizar o caminho percorrido
+# função para visualizar o caminho percorrido
 def visualize_path(map, path):
     for node in path:
         map[node] = PATH
         visualize_map(map)
 
-# Função de heurística (distância de Manhattan)
+# função de heurística (distância de Manhattan)
 def heuristic(node, goal):
     return abs(node[0] - goal[0]) + abs(node[1] - goal[1])
 
-# Função principal
+# função principal
 def main():
     # Definição do mapa de exemplo (0 representa espaço livre, 1 representa obstáculo)
     map = np.array([
@@ -165,5 +165,4 @@ def main():
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-if __name__ == "__main__":
-    main()
+main()
